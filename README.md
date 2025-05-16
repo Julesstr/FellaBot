@@ -10,6 +10,7 @@ DO NOT COMMIT YOUR TOKEN!
     environment:
       # Add any environment variables your application needs
       - NODE_ENV=production
-      - DISCORD_TOKEN=your_token_here
-      # - OTHER_ENV_VARIABLE=value
+    #      - SURVEY_URL=
+    #      - APP_ID=
+    #      - DISCORD_TOKEN=
 ```

@@ -25,15 +25,16 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY --from=builder /matchmaker/target/release/matchmaker /matchmaker
 
 # Copy Node.js application files
-COPY discord-bot/ /app
+COPY discord-bot/ /discord-bot
 COPY survey_collection /survey_collection
 
 # Install Python requirements in the virtual environment
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r /survey_collection/requirements.txt
 
+
 # Install Node.js dependencies
-RUN npm ci --only=production
+RUN npm install --only=production
 
 # Set environment variables if needed
 ENV NODE_ENV=production
@@ -41,4 +42,4 @@ ENV NODE_ENV=production
 # EXPOSE 3000
 
 # Command to run the Node.js application
-CMD ["node", "src/index.js"]
+CMD ["npm", "run", "register-and-start"]

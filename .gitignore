@@ -1,4 +1,4 @@
 .env
 launch.ps1
-data/sample_input.csv
+data/input.csv
 discord-bot/node_modules

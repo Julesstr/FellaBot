@@ -13,8 +13,9 @@ services:
     environment:
       # Add any environment variables your application needs
       - NODE_ENV=production
-      # - DISCORD_TOKEN=your_token_here
-      # - OTHER_ENV_VARIABLE=value
+#      - SURVEY_URL=
+#      - APP_ID=
+#      - DISCORD_TOKEN=
     ports:
       # Expose any ports your application needs
       - "3000:3000"

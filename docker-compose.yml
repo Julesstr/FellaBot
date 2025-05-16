@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  fellabot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fellabot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Add any volumes you might need, for example:
+      - ./data:/app/data
+    environment:
+      # Add any environment variables your application needs
+      - NODE_ENV=production
+#      - SURVEY_URL=
+#      - APP_ID=
+#      - DISCORD_TOKEN=
+#      - PUBLIC_KEY=
+    ports:
+      # Expose any ports your application needs
+      - "3000:3000"
+    networks:
+      - fellabot-network
+
+networks:
+  fellabot-network:
+    driver: bridge

@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     container_name: fellabot
     restart: unless-stopped
+    env_file:
+      - .env
     volumes:
       # Add any volumes you might need, for example:
       - ./data:/app/data

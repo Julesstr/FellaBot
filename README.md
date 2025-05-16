@@ -1,7 +1,7 @@
 # DotA 2 Inhouse Matchmaking Bot
 To run and build the latest version
 ```shell
-docker compose build  && docker compose up
+docker compose build  && docker compose up -d
 ```
 
 Configure your `DISCORD_TOKEN` in the `docker-compose.yml`. Adjust the `environment` section so that the `DISCORD_TOKEN` is not commented and place your value.

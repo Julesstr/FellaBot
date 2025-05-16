@@ -182,7 +182,7 @@ app.post(
               }
 
               // Compose message with usernames and Rust output
-              const content = `Teams formed with players: ${usernames.join(', ')}\n\n${stdout.trim()}`;
+              const content = `## Teams formed with players: ${usernames.join(', ')}\n\n${stdout.trim()}`;
 
               await fetch(
                 `https://discord.com/api/v10/webhooks/${application_id}/${token}/messages/@original`,

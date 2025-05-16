@@ -14,10 +14,11 @@ FROM node:20-alpine
 RUN apk add --no-cache python3 py3-pip python3-dev gcc musl-dev
 
 # Set working directory
-WORKDIR /app
+WORKDIR /discord-bot
 
 # Setup Python virtual environment
 ENV VIRTUAL_ENV=/app/venv
+
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 

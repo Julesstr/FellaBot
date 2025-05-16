@@ -14,7 +14,6 @@ FROM node:20-alpine
 RUN apk add --no-cache python3 py3-pip python3-dev gcc musl-dev
 
 # Set working directory
-WORKDIR /discord-bot
 
 # Setup Python virtual environment
 ENV VIRTUAL_ENV=/app/venv
@@ -23,15 +22,18 @@ RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Copy the compiled binary from the builder stage
-COPY --from=builder /matchmaker/target/release/matchmaker /matchmaker
 
 # Copy Node.js application files
-COPY discord-bot/ /discord-bot
-COPY survey_collection /survey_collection
+COPY discord-bot/ /fellabot/discord-bot
+COPY survey_collection /fellabot/survey_collection
+COPY data/sample_input.csv /fellabot/data/sample_input.csv
+COPY --from=builder /matchmaker/target/release/matchmaker /fellabot/matchmaker/target/release/matchmaker.exe
+
+WORKDIR /fellabot/discord-bot
 
 # Install Python requirements in the virtual environment
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r /survey_collection/requirements.txt
+    pip install --no-cache-dir -r /fellabot/survey_collection/requirements.txt
 
 
 # Install Node.js dependencies

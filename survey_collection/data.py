@@ -1,10 +1,10 @@
-import requests
+import json
+import numpy as np
 import os
+import pandas as pd
+import requests
 import sys
 from bs4 import BeautifulSoup
-import pandas as pd
-import numpy as np
-import json
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -13,41 +13,40 @@ load_dotenv()
 def convert_to_df(url):
     sys.stdout.reconfigure(encoding="utf-8")
     response = requests.get(url)
-    response.encoding = "utf-8" 
+    response.encoding = "utf-8"
 
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, "html.parser")
-    
+
     else:
         print("Request error")
         return None
-    
+
     table = soup.find("table")
     if table:
 
         rows = table.find_all("tr")
-        
+
         data = []
-        
+
         for row in rows:
             cols = row.find_all("td")
             cols_data = [col.get_text(strip=True) for col in cols]
             if cols_data:
                 data.append(cols_data)
 
-
         df = pd.DataFrame(data)
 
-    
-        df.columns = df.iloc[0] 
-        df = df.drop(0)  
+        df.columns = df.iloc[0]
+        df = df.drop(0)
         df.reset_index(drop=True, inplace=True)
 
     else:
         print("Error creating dataframe")
         return None
-    
+
     return df
+
 
 def parse_data(df):
     df = df.iloc[1:, 0:9].reset_index(drop=True)
@@ -68,9 +67,8 @@ def parse_data(df):
 
     df = df.set_index(df.columns[0])
 
-
-
     return df
+
 
 def sort_data(df, usernames):
     df = df[df["Name"].isin(usernames)]
@@ -94,7 +92,7 @@ def sort_data(df, usernames):
 def main(usernames):
     df = convert_to_df(os.getenv("SURVEY_URL"))
     df = parse_data(df)
-    
+
     usernames = json.loads(usernames)
     df = sort_data(df, usernames)    
     df.to_csv("../data/input.csv", index=False)

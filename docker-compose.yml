@@ -16,6 +16,7 @@ services:
 #      - SURVEY_URL=
 #      - APP_ID=
 #      - DISCORD_TOKEN=
+#      - PUBLIC_KEY=
     ports:
       # Expose any ports your application needs
       - "3000:3000"

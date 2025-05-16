@@ -13,4 +13,5 @@ DO NOT COMMIT YOUR TOKEN!
     #      - SURVEY_URL=
     #      - APP_ID=
     #      - DISCORD_TOKEN=
+    #      - PUBLIC_KEY=
 ```

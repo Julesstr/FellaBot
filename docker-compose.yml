@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   fellabot:
     build:
@@ -21,7 +19,7 @@ services:
 #      - PUBLIC_KEY=
     ports:
       # Expose any ports your application needs
-      - "3000:3000"
+      - "3001:3000"
     networks:
       - fellabot-network
 

@@ -77,7 +77,7 @@ impl PlayerDetails {
 }
 
 pub fn load_players_from_csv() -> Result<Vec<PlayerDetails>, Box<dyn Error>> {
-    let mut rdr = Reader::from_path("../data/input.csv")?;
+    let mut rdr = Reader::from_path("/app/data/input.csv")?;
     let mut players: Vec<PlayerDetails> = vec![];
 
     for result in rdr.records() {

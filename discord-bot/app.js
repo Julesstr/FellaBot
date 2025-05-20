@@ -78,7 +78,7 @@ app.post(
         // Set the helper file equal to how many solutions the user requested. Rust uses this later.
 
         if (data.options.length > 10) {
-            fs.writeFileSync("../matchmaker/num.txt", String(data.options[10].value));
+            fs.writeFileSync("/app/num.txt", String(data.options[10].value));
         }
 
         
@@ -160,7 +160,7 @@ app.post(
           
 
           execFile(
-            '../matchmaker/target/release/matchmaker.exe',
+            '/app/matchmaker',
             {
               env: {
                 ...process.env,
@@ -231,7 +231,7 @@ app.post(
     return res.status(400).json({ error: 'unknown interaction type' });
   }
 );
-
+//
 app.listen(PORT, "0.0.0.0", () => {
   console.log("Listening on port", PORT);
 });

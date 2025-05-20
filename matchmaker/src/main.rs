@@ -9,9 +9,9 @@ use matchmaker::Solutions;
 
 
 fn main() {
-    let solutions: Solutions = run_matchmaker(1000000);
+    let solutions: Solutions = run_matchmaker(2000000);
 
-    let textfile: String = fs::read_to_string("../matchmaker/num.txt").expect("Failed to read file");
+    let textfile: String = fs::read_to_string("/app/num.txt").expect("Failed to read file");
     let num_solutions: usize = textfile.trim().parse().expect("Not a valid usize");
 
     for n in 1..=num_solutions {
@@ -36,5 +36,5 @@ fn main() {
         println!("\r");
     }
 
-    fs::write("../matchmaker/num.txt", "1").expect("Failed to write to file");
+    fs::write("/app/num.txt", "1").expect("Failed to write to file");
 }
